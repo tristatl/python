@@ -1,0 +1,270 @@
+python2.7 学习
+
+python 解释型语言，代码执行时一行一行的翻译成机器语言
+1.速度慢
+2.代码不能加密
+
+c 运行前直接编译成机器码 
+
+可以运行控制台 输入 python 进入 python 环境 , 直接敲代码，但是不能保存
+可以在文本编辑器敲，保存成.py 文件，进入文件所在目录 运行 python xx.py 
+
+输入 
+raw_input()
+eg: 
+name = input()
+输出
+print 或者
+print()
+可用加号连接
+eg:
+print 'Hello ' + 'World!'
+
+** python3.x 中 用逗号连接 
+** eg: print('Hello ', 'World!')
+
+大小写敏感
+
+# 单行注释 
+'''
+多行注释
+'''
+中文注释
+#coding = utf-8
+#coding = gbk
+
+使用4个空格缩进
+
+数据类型和变量
+整数 可以处理任意大小的整数
+浮点数 
+字符串 用单引号或双引号括起来，若文本中有单引号，可以用转义字符
+Python还允许用r''表示''内部的字符串默认不转义
+eg:
+print('\\\t\\')
+\       \
+ print(r'\\\t\\')
+\\\t\\
+Python允许用'''...'''的格式表示多行内容
+eg：
+print '''
+line1
+line2
+line3
+'''
+在交互式命令行内输入，在输入多行内容时，提示符由>>>变为...，提示你可以接着上一行输入
+eg:
+>>> print('''line1
+... line2
+... line3''')
+
+布尔值 True False
+逻辑运算 and or not 运算
+空值 None 
+列表，字典，自定义数据类型
+
+变量 
+可以是任意数据类型
+变量名 英文，数字，下划线
+可以把任意数据类型赋值给变量，同一个变量可以反复赋值，且可以是不同类型的
+eg:
+a = 123 # a是整数
+print(a)
+a = 'ABC' # a变为字符串
+print(a)
+
+变量在内存中的表示：
+
+eg：
+
+a = 'abc'
+print a
+b = a
+print b
+a = 'ABC'
+print a
+print b
+
+输出：
+abc
+abc
+ABC
+abc
+
+1.在内存中创建了一个'abc'的字符串。
+2.在内存中创建了一个名为a的变量，并把它指向'abc'。
+3.变量b指向变量a所指向的数据。
+4.内存中创建字符串'ABC'，把a指向'ABC'，但b没有更改。
+
+常量
+用全部大写的变量名表示
+PI = 3.14159265359
+
+除法
+传统除法： 整数地板除法，浮点数精确除法
+精确除法： 
+from __future__ import division
+总是返回真实的商
+地板除法：
+操作符 //
+内建函数 divmod(a,b) 返回 (a//b,a%b)
+eg:
+
+取余 %
+
+
+2017/10/5/23/16
+
+字符串和编码
+
+python3 可以直接输出中文
+eg：
+print('中国')
+
+ord()取字符的整数
+chr()取把对应编码转为对应的字符
+
+bytes字节类型表示
+x = b'ABC'
+bytes的每个字符占一个字节
+
+encode()编码为指定的bytes
+decode()将bytes变为str
+
+len()计算包含多少个字符
+
+若bytes类型，len()计算的是字节数
+
+格式化 类似 C语言，用%实现
+%d 整数
+%f 浮点数
+%s 字符串
+%x 十六进制整数
+超过两个变量要写括号
+eg:
+PI = 3.1415926
+s1 = 72
+s2 = 85
+r = "Ivy"
+print('%s' % r)
+print('%.2f' % PI)
+print('Hello, %d %d' % (s1,s2))
+
+不确定的类型可以用%s
+
+要输出%用转义字符%%
+
+有序集合
+list 长度可变，元素可以不同类型
+eg：
+exp = [1,'abc',[12,'asd']]
+ls = ['python','java',['c++','js']] 相当于二维数组
+print(ls[2][1])
+#js
+
+classmates = ['Mike','Bob','Tracy']
+len()获得元素个数
+索引
+classmate[i](i = 0,1,2)获得下标为i的元素
+classmates[j](j = -1,-2,-3)倒序获得元素
+向列表末尾添加元素
+classmates.append()
+向列表位置i添加元素
+classmates.insert(i,'')
+列表末尾删除元素
+classmates.pop()
+列表位置i删除元素
+classmates.pop(i)
+替换位置i的元素
+classmates[i]=''
+
+
+tuple 初始化后长度不可变
+eg：
+class = ('a','b','c')
+当tuple类型只有一个元素时的初始化
+class = (1,2,['a','b'])
+class[2].append()
+#class 的第三个元素是list类型是可操作的
+class = (1,)
+#注意有逗号
+
+循环
+for i in list_name:
+	xxx
+	xxx
+range(n)函数生成0~n-1的整数序列
+list()函数生成列表
+list(range(n))
+
+while 循环
+break跳出循环
+continue跳过当前循环
+
+ctrl+c结束python死循环
+
+dict类型 类似于c++中的map
+键值匹配
+eg:
+d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
+使用 in 判断是否存在 key
+或者使用d.get('',-1)判断
+eg:
+'Thomas' in d
+d.get('Thomas',-1)
+使用d.pop('key')删除key键值对
+
+set 一组key的集合，无序，无重复元素，不可放入可变对象
+使用list[]作为输入集合
+eg:
+ s = set([1, 2, 3])
+ print(s)
+ # 输出 {1, 2, 3}
+ 
+ 添加
+ s.add()
+ 删除
+ s.remove(key)
+ 做交集 &，并集 |
+ 
+ list是可变对象
+ 对list进行操作，list内部的内容是会变化的
+ 
+ str是不可变对象
+ 对str进行操作，
+ 调用自身的任意方法，也不会改变该对象自身的内容。
+ 相反，这些方法会创建新的对象并返回，
+ 这样，就保证了不可变对象本身永远是不可变的。
+ 
+ 函数
+ python内置函数可以直接调用
+ http://docs.python.org/3/library/functions.html#abs
+ 
+ 函数名是指向一个函数对象的引用，可以把函数名赋值给一个对象，相当于给函数起别名
+ eg：
+ a = abs
+ a(-1)
+ # 输出 1
+ 
+ 自定义函数
+ def function_name(argument1,argument2,...):
+	return result
+	return #返回none
+pass 用来做占位符
+比如现在还没想好怎么写函数的代码，就可以先放一个pass，让代码能运行起来。
+eg:
+def nop():
+	pass
+
+函数可以返回多个值(假象)
+其实返回的是tuple类型
+eg：
+ x, y = move(100, 100, 60, math.pi / 6)
+>>> print(x, y)
+151.96152422706632 70.0
+
+r = move(100, 100, 60, math.pi / 6)
+>>> print(r)
+(151.96152422706632, 70.0)
+
+
