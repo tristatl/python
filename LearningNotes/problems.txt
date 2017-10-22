@@ -1,0 +1,19 @@
+控制台
+python 进入python3.6环境
+python2 进入python2.7环境
+
+问题：
+用pip安装一个包报了这个错误：python pip fatal error in launcher unable to create process using “”
+
+使用pip安装命令：
+
+python -m pip install xxx  
+
+
+
+
+
+
+
+
+

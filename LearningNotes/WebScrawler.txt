@@ -1,0 +1,152 @@
+web scrawler
+
+爬虫架构
+
+调度器
+URL管理器
+网页下载器（urllib2）
+网页解析器（BeautifuSoup）
+
+URL管理器 实现
+**python内存
+待爬取URL集合：set()容器
+已爬取URL集合：set()容器
+关系数据库MySQL
+urls(url,1s_crawled)
+缓存数据库redis
+
+网页下载器：将互联网上URL下载到本地工具
+urllib2  python官方包 
+request  第三方工具
+
+1.
+import urllib2
+#直接请求
+urllib2.urlopen("http://")
+#获取状态码
+print(response.getcode())  
+#读取下载好的内容
+cont = response.read()
+
+2.
+import urllib2
+#创建Request对象
+request = urllib2.Request(url)
+#向服务器提交数据
+request.add_data('a','1')
+#添加http的header,伪装成浏览器
+request.add_header('User-Agent','Mozilla/5.0')
+#发送网页下载请求获取结果
+response = urllib2.urlopen(request)
+
+3.
+#用户登录访问，添加cookie的处理
+处理方法：HTTPCookieProcessor
+#代理访问
+ProxyHandler
+#网页使用HTTPS加密协议
+HTTPSHandler
+#相互之间自动跳转的网页
+HTTPRedirectHandler
+
+opener = urllib2.build_opner(handler)
+urllib2.install_opener(opener)
+urllib2.urlopen(url)
+
+eg:
+
+import urllib2,cookielib
+
+#创建cookie容器，存储cookie数据
+cj = cookielib.CookieJar()
+#创建一个opener
+opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+#给urllib2安装opener
+urllib.install_opener(opener)
+#使用带cookie的urllib2访问网页
+response = urllib2.urlopen("http://")
+
+
+网页解析器
+1.正则表达式
+2.python自带的html.parse模块
+3.第三方插件BeautifulSoup
+4.第三方插件lxml
+
+结构化解析-DOM树
+文件对象模型
+
+html网页
+1.创建BeautifulSoup对象
+
+from bs4 import BeautifuSoup
+soup = BeautifulSoup(
+html_doc,               #HTML文档字符串
+'html,parser',          #HTML解析器
+from_encoding = 'utf8'  #HTML文档的编码
+)
+
+2.搜索节点 
+find_all: 找到所有符合要求的节点
+fine： 只找第一个符合要求的节点
+搜索节点方法：
+按节点名称
+按节点属性
+按节点文字
+
+find_all(name,attrs,string)
+
+#查找所有标签为a的节点
+soup.find_all('a')  
+#查找所有标签为a,链接符合/view/123.htm形式的节点
+soup.fina_all('a',href = '/view/123.htm')
+#可以用正则表达式匹配
+soup.fina_all('a',href = re.compile(r'/view/\d+\.htm'))
+#查找所有标签为div,class为abc,文字为python的节点
+soup.fina_all('a',class_ = 'abc', string = 'Python')
+
+
+3.访问节点（名称，属性，文字）
+
+#得到节点：<a href = '1.html'>Python</a>
+
+#获取查找到的节点的标签名称
+node.name
+
+#获取查找到的a节点的href属性
+node['href']
+
+#获取查找到的a节点的链接文字
+node.get_text()
+
+
+实例爬虫
+
+1.确定目标
+哪个网站哪些网页哪些数据
+
+2.分析目标
+url格式 限定抓取的页面的范围
+数据格式 页面的标题和简介
+网页编码 进行正确的解析
+
+3.编写代码
+4.执行爬虫
+
+实例分析
+目标：百度百科Python词条相关网页
+入口页：http://baike.baidu.com/item/Python
+URL格式：
+-词条页面URL：/item/125370.htm
+数据格式：
+-标题：
+<dd class = "lemmaWgt-lemmaTitle-title"><h1>***</h1></dd>
+-简介：
+<div class="lemma-summary">***</div>
+页面编码：UTF-8
+升级新的抓取策略
+
+进阶爬虫
+需要登录，验证码，Ajax，服务器防爬虫，多线程，分布式
+
+

@@ -1,0 +1,32 @@
+windows 同时装python2.x和3.x
+1.先去官网下载
+2.添加环境变量
+3.下载setuptools
+控制台进入解压后的文件夹 
+>python setup.py install
+4.下载pip
+进入python2.x的Scripts文件目录下
+>easy_install.exe pip
+5.可以用pip下载包了
+进入python2.x的Scripts文件目录下
+>pip install beautifulsoup4
+
+总结：
+出现的问题：
+1.注意代码缩进
+pro1:
+AttributeError: 'UrlManager' object has no attribute 'new_urls'
+solve：
+new_urls()函数的缩进不对
+控制台运行：python2 -tt xxx.py
+#-t 命令会显示缩进错误
+
+pro2:
+httplib.IncompleteRead: IncompleteRead(1353 bytes read)
+solve:
+定义以下内容：
+import httplib  
+httplib.HTTPConnection._http_vsn = 10  
+httplib.HTTPConnection._http_vsn_str ='HTTP/1.0'  
+
+

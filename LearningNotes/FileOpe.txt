@@ -1,0 +1,30 @@
+python 文件读写
+
+'''
+在磁盘上读写文件的功能都是由操作系统提供的，现代操作系统不允许普通的程序直接操作磁盘，所以，读写文件就是请求操作系统打开一个文件对通常称为文件描述符），然后，通过操作系统提供的接口从这个文件对中读取数据（读文件），或者把数据写入这个文件对象（写文件）。
+'''
+
+读文件
+方法一：
+try:
+	f = open("/path/to/file","r")
+	print(f.read())
+finally:
+	if f:
+		f.close()  //文件使用后必须关闭
+方法二：（常用）
+with open('/path/to/file','r') as f:
+	print(f.read())	
+	
+read() //读文件全部内容
+read(size) //读size大小
+readline() //读一行
+
+open('/path/to/file','rb') //读二进制文件,如图片视频
+open('/path/to/file','r',encoding = 'xxx') //读xxx编码文件
+
+写文件 
+
+with open('/path/to/file','w') as f:
+	f.write("xxx")
+	

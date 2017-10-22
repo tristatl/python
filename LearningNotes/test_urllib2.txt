@@ -1,0 +1,18 @@
+'''
+Created on 2017年10月21日
+
+@author: TangLi
+'''
+#coding: utf8
+import urllib2
+
+url = "http://www.baidu.com"
+
+print("第一种方法")
+response1 = urllib2.urlopen(url)
+print(response1.getcode()) #打印状态码
+print(len(response1.read())) #返回网页长度
+
+print("第二种方法")
+request = urllib.Request(url)
+request 
