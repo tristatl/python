@@ -1,7 +1,9 @@
 # pythonCode
 
-about python learning
+python learning
 
-it will contain python codes and learning notes during my learning period
+python codes and learning notes 
 
-I will focus on Web Scrawler and machine learing later
+Web Scrawler 
+
+Machine Learing 
